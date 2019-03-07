@@ -1,0 +1,17 @@
+#contain{
+    float: left;
+}
+.rig{
+    height: 800px;
+}
+.right{
+    width: 1100px;
+    float: left;
+}
+.layui-breadcrumb{
+    display: block;
+    padding: 20px 0 20px 20px;
+}
+.login{
+    z-index: 999;
+}

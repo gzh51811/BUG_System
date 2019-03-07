@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加商品</title>
+    <link rel="stylesheet" href="../assets/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/add_shopping.css">
+    <script src="../assets/layui/layui.js"></script>
+    <script type="text/javascript" src="../js/add_shopping.js"></script>
+</head>
+<body>
+    <div id="contain">
+        <ul class="layui-nav layui-nav-tree layui-bg-cyan rig" lay-filter="test">
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;" style="font-size:24px;">后台管理系统</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">商品管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="goods_list.html">商品列表</a></dd>
+                    <dd><a href="shopping_classify.html">商品分类</a></dd>
+                    <dd><a href="add_shopping.html">添加商品</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">用户管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="user_list.html">用户列表</a></dd>
+                    <dd><a href="adduser.html">添加用户</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">订单管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="indent_list.html">订单列表</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <div class="right">
+            <ul class="layui-nav layui-bg-cyan">
+              <li class="layui-nav-item">
+                <a href="">控制台<span class="layui-badge">9</span></a>
+              </li>
+              <li class="layui-nav-item">
+                <a href="">个人中心<span class="layui-badge-dot"></span></a>
+              </li>
+              <li class="layui-nav-item">
+                <a href="">我</a>
+                <dl class="layui-nav-child login">
+                  <dd><a href="javascript:;">修改信息</a></dd>
+                  <dd><a href="javascript:;">安全管理</a></dd>
+                  <dd><a href="javascript:;">退了</a></dd>
+                </dl>
+              </li>
+            </ul>
+            <span class="layui-breadcrumb">
+                <a href="../index.html">首页</a>
+                <a href="javascript:;">用户管理</a>
+                <a><cite>添加商品</cite></a>
+            </span>
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品名称</label>
+                    <div class="layui-input-inline">
+                      <input id="name" type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">50字以内</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品价格</label>
+                    <div class="layui-input-inline">
+                        <input id="original" type="text" name="text" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">销售价格</label>
+                    <div class="layui-input-inline">
+                        <input id="now" type="text" name="text" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品分类</label>
+                    <div class="layui-input-block">
+                      <select id="classify" name="city" lay-verify="required">
+                        <!-- <option value=""></option> -->
+                        <option value="手机">手机</option>
+                        <option value="电脑">电脑</option>
+                        <option value="平板">平板</option>
+                        <option value="配件">配件</option>
+                        <option value="办公用品">办公用品</option>
+                        <option value="其他">其他</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">库存</label>
+                    <div class="layui-input-inline">
+                        <input id="warehousing" type="text" name="text" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">复选框</label>
+                    <div class="layui-input-block">
+                      <input type="checkbox" name="like[write]" title="热卖">
+                      <input type="checkbox" name="like[read]" title="推荐" checked>
+                      <input type="checkbox" name="like[dai]" title="促销">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">上架</label>
+                    <div class="layui-input-block">
+                      <input id="state" type="checkbox" name="switch" lay-skin="switch">
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">商品描述</label>
+                    <div class="layui-input-block">
+                      <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                      <button id="btn" class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

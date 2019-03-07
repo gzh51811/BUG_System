@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户列表</title>
+    <link rel="stylesheet" href="../assets/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/user_list.css">
+    <script src="../assets/layui/layui.js"></script>
+    <script type="text/javascript" src="../js/user_list.js"></script>
+</head>
+<body>
+    <div id="contain">
+        <ul class="layui-nav layui-nav-tree layui-bg-cyan rig" lay-filter="test">
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;" style="font-size:24px;">后台管理系统</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">商品管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="goods_list.html">商品列表</a></dd>
+                    <dd><a href="shopping_classify.html">商品分类</a></dd>
+                    <dd><a href="add_shopping.html">添加商品</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">用户管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="user_list.html">用户列表</a></dd>
+                    <dd><a href="adduser.html">添加用户</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">订单管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="indent_list.html">订单列表</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <div class="right">
+        <ul class="layui-nav layui-bg-cyan">
+          <li class="layui-nav-item">
+            <a href="">控制台<span class="layui-badge">9</span></a>
+          </li>
+          <li class="layui-nav-item">
+            <a href="">个人中心<span class="layui-badge-dot"></span></a>
+          </li>
+          <li class="layui-nav-item">
+            <a href="">我</a>
+            <dl class="layui-nav-child login">
+              <dd><a href="javascript:;">修改信息</a></dd>
+              <dd><a href="javascript:;">安全管理</a></dd>
+              <dd><a href="javascript:;">退了</a></dd>
+            </dl>
+          </li>
+        </ul>
+        <span class="layui-breadcrumb">
+            <a href="../index.html">首页</a>
+            <a href="javascript:;">商品管理</a>
+            <a><cite>用户列表</cite></a>
+        </span>
+        <table class="layui-hide" id="test"></table>
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-event="getCheckData">添加</button>
+                <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">删除</button>
+            </div>
+        </script>
+
+        <script type="text/html" id="barDemo">
+          <span class="layui-btn layui-btn-xs" lay-event="edit">编辑</span>
+          <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        </script>   
+    </div>
+ 
+<script>
+// layui.use('table', function(){
+//   var table = layui.table;
+  
+//   table.render({
+//     elem: '#test'
+//     ,data:[{
+//       "id": "10001"
+//       ,"name": "杜甫"
+//       ,"classify": "xianxin@layui.com"
+//       ,"sex": "男"
+//       ,"city": "浙江杭州"
+//       ,"sign": "人生恰似一场修行"
+//       ,"experience": "116"
+//       ,"ip": "192.168.0.8"
+//       ,"logins": "108"
+//       ,"joinTime": "2016-10-14"
+//     }, {
+//       "id": "10002"
+//       ,"name": "李白"
+//       ,"classify": "xianxin@layui.com"
+//       ,"sex": "男"
+//       ,"city": "浙江杭州"
+//       ,"sign": "人生恰似一场修行"
+//       ,"experience": "12"
+//       ,"ip": "192.168.0.8"
+//       ,"logins": "106"
+//       ,"joinTime": "2016-10-14"
+//     }, {
+//       "id": "10003"
+//       ,"name": "王勃"
+//       ,"classify": "xianxin@layui.com"
+//       ,"sex": "男"
+//       ,"city": "浙江杭州"
+//       ,"sign": "人生恰似一场修行"
+//       ,"experience": "65"
+//       ,"ip": "192.168.0.8"
+//       ,"logins": "106"
+//       ,"joinTime": "2016-10-14"
+//     }, {
+//       "id": "10004"
+//       ,"name": "贤心"
+//       ,"classify": "xianxin@layui.com"
+//       ,"sex": "男"
+//       ,"city": "浙江杭州"
+//       ,"sign": "人生恰似一场修行"
+//       ,"experience": "666"
+//       ,"ip": "192.168.0.8"
+//       ,"logins": "106"
+//       ,"joinTime": "2016-10-14"
+//     }, {
+//       "id": "10005"
+//       ,"name": "贤心"
+//       ,"classify": "xianxin@layui.com"
+//       ,"sex": "男"
+//       ,"city": "浙江杭州"
+//       ,"sign": "人生恰似一场修行"
+//       ,"experience": "86"
+//       ,"ip": "192.168.0.8"
+//       ,"logins": "106"
+//       ,"joinTime": "2016-10-14"
+//     }, {
+//       "id": "10006"
+//       ,"name": "贤心"
+//       ,"classify": "xianxin@layui.com"
+//       ,"sex": "男"
+//       ,"city": "浙江杭州"
+//       ,"sign": "人生恰似一场修行"
+//       ,"experience": "12"
+//       ,"ip": "192.168.0.8"
+//       ,"logins": "106"
+//       ,"joinTime": "2016-10-14"
+//     }, {
+//       "id": "10007"
+//       ,"name": "贤心"
+//       ,"classify": "xianxin@layui.com"
+//       ,"sex": "男"
+//       ,"city": "浙江杭州"
+//       ,"sign": "人生恰似一场修行"
+//       ,"experience": "16"
+//       ,"ip": "192.168.0.8"
+//       ,"logins": "106"
+//       ,"joinTime": "2016-10-14"
+//     }, {
+//       "id": "10008"
+//       ,"name": "贤心"
+//       ,"classify": "xianxin@layui.com"
+//       ,"sex": "男"
+//       ,"city": "浙江杭州"
+//       ,"sign": "人生恰似一场修行"
+//       ,"experience": "106"
+//       ,"ip": "192.168.0.8"
+//       ,"logins": "106"
+//       ,"joinTime": "2016-10-14"
+//     }]
+//     ,toolbar: '#toolbarDemo'
+//     ,title: '用户数据表'
+//     ,cols: [[
+//       {type: 'checkbox', fixed: 'left'}
+//       ,{field:'id', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
+//       ,{field:'username', title:'用户名', width:120, edit: 'text'}
+//       ,{field:'sex', title:'性别', width:80, edit: 'text', sort: true}
+//       ,{field:'city', title:'城市', width:100}
+//       ,{field:'sign', title:'签名'}
+//       ,{field:'profession', title:'职业', width:80, sort: true}
+//       ,{field:'experience', title:'经验', width:120}
+//       ,{field:'joinTime', title:'注册时间', width:120}
+//       ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+//     ]]
+//     ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+//       layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+//       //,curr: 5 //设定初始在第 5 页
+//       ,groups: 1 //只显示 1 个连续页码
+//       ,first: false //不显示首页
+//       ,last: false //不显示尾页
+      
+//     }
+
+
+
+//   });
+
+//   //头工具栏事件
+//   table.on('toolbar(test)', function(obj){
+//     var checkStatus = table.checkStatus(obj.config.id);
+//     switch(obj.event){
+//       case 'getCheckData':
+//         var data = checkStatus.data;
+//         layer.alert(JSON.stringify(data));
+//       break;
+//       case 'getCheckLength':
+//         var data = checkStatus.data;
+//         layer.msg('选中了：'+ data.length + ' 个');
+//       break;
+//       case 'isAll':
+//         layer.msg(checkStatus.isAll ? '全选': '未全选');
+//       break;
+//     };
+//   });
+
+//   table.on('tool(test)', function(obj){
+//     var data = obj.data;
+//     //console.log(obj)
+//     if(obj.event === 'del'){
+//       layer.confirm('真的删除行么', function(index){
+//         obj.del();
+//         layer.close(index);
+//       });
+//     } else if(obj.event === 'edit'){
+//       layer.prompt({
+//         formType: 2
+//         ,value: data.email
+//       }, function(value, index){
+//         obj.update({
+//           email: value
+//         });
+//         layer.close(index);
+//       });
+//     }
+//   });
+
+// });
+</script>
+</body>
+<script>
+//     layui.use('element', function(){
+//         var element = layui.element;
+//     });
+
+//     layui.use('form', function(){
+//     var form = layui.form;
+
+//     form.on('submit(formDemo)', function(data){
+//         layer.msg(JSON.stringify(data.field));
+//         return false;
+//     });
+// })
+</script>
+</html>

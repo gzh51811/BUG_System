@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商品列表</title>
+    <link rel="stylesheet" href="../assets/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/goods_list.css">
+    <script src="../assets/layui/layui.js"></script>
+    <script type="text/javascript" src="../js/goods_list.js"></script>
+</head>
+<body>
+    <div id="contain">
+        <ul class="layui-nav layui-nav-tree layui-bg-cyan rig" lay-filter="test">
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;" style="font-size:24px;">后台管理系统</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">商品管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="goods_list.html">商品列表</a></dd>
+                    <dd><a href="shopping_classify.html">商品分类</a></dd>
+                    <dd><a href="add_shopping.html">添加商品</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">用户管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="user_list.html">用户列表</a></dd>
+                    <dd><a href="adduser.html">添加用户</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">订单管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="indent_list.html">订单列表</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <div class="right">
+        <ul class="layui-nav layui-bg-cyan">
+              <li class="layui-nav-item">
+                <a href="">控制台<span class="layui-badge">9</span></a>
+              </li>
+              <li class="layui-nav-item">
+                <a href="">个人中心<span class="layui-badge-dot"></span></a>
+              </li>
+              <li class="layui-nav-item">
+                <a href="">我</a>
+                <dl class="layui-nav-child login">
+                  <dd><a href="javascript:;">修改信息</a></dd>
+                  <dd><a href="javascript:;">安全管理</a></dd>
+                  <dd><a href="javascript:;">退了</a></dd>
+                </dl>
+              </li>
+            </ul>
+        <span class="layui-breadcrumb">
+            <a href="../index.html">首页</a>
+            <a href="javascript:;">商品管理</a>
+            <a><cite>商品列表</cite></a>
+        </span>
+        <table class="layui-hide" id="test"></table>
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-event="getCheckData">添加</button>
+                <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">删除</button>
+                <div style="padding:0px" class="layui-btn" lay-event="isAll">
+                  <input id="title"  type="text" name="text" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+                <button id="seek" class="layui-btn layui-btn-sm" lay-event="isAll">搜索</button>
+            </div>
+        </script>
+
+        <script type="text/html" id="barDemo">
+          <span class="layui-btn layui-btn-xs edit" lay-event="edit">编辑</span>
+          <a class="dele layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        </script>   
+    </div>
+</body> 
+</html>
