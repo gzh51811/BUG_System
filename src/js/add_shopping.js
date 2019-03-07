@@ -52,20 +52,39 @@ window.onload=function(){
         _warehousing = warehousing.value;
         _state = state.value ? '上架' : '下架';
 
-        let xhr = new XMLHttpRequest();
-        xhr.onload = ()=>{
-            if(xhr.status == 200){
-                let res = JSON.parse(xhr.responseText);
-                if(res.ok){
-                    alert('添加成功');
+        if(window.location.href.split('?')[1]){
+            var id = (window.location.href.split('=')[1]);
+            console.log(id)
+            let xhr = new XMLHttpRequest();
+            xhr.onload = ()=>{
+                if(xhr.status == 200){
+                    let res = JSON.parse(xhr.responseText);
+                    if(res.ok){
+                        alert('修改成功');
+                    }
                 }
             }
+            xhr.open('post','/add_shopping/update',true);
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            
+            let data = `id=${id}&name=${_name}&classify=${_classify}&original=${_original}&now=${_now}&warehousing=${_warehousing}&state=${_state}&joinTime=${getNowFormatDate(Date.now())}`
+            xhr.send(data);
+        }else{
+            let xhr = new XMLHttpRequest();
+            xhr.onload = ()=>{
+                if(xhr.status == 200){
+                    let res = JSON.parse(xhr.responseText);
+                    if(res.ok){
+                        alert('添加成功');
+                    }
+                }
+            }
+            xhr.open('post','/add_shopping',true);
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            
+            let data = `name=${_name}&classify=${_classify}&original=${_original}&now=${_now}&warehousing=${_warehousing}&state=${_state}&joinTime=${getNowFormatDate(Date.now())}`
+            xhr.send(data);
         }
-        xhr.open('post','/add_shopping',true);
-        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-        
-        let data = `name=${_name}&classify=${_classify}&original=${_original}&now=${_now}&warehousing=${_warehousing}&state=${_state}&joinTime=${getNowFormatDate(Date.now())}`
-        xhr.send(data);
 
         e.preventDefault();
     }

@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     let ps = document.querySelector('#ps');
     let addbtn = document.querySelector('.addbtn');
 
-    
+    // console.log(user)
 
     // 判断用户名是否符合正则，是否存在
     let ok1 = false;
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         let _username = username.value;
         let str = checkReg.trim(_username);
         
-        if(str && checkReg.chinese(str)){
+        if(str && checkReg.name(str)){
             username.parentNode.nextElementSibling.innerText = '你输入的用户可以使用';
             ok1 = true;
             // // 发起ajax请求
@@ -130,7 +130,27 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
     }
 
-    
+    if(window.location.href.split('?')[1]){
+        var myuser = window.location.href.split('=')[1];
+        // console.log(user);
+        let xhr = new XMLHttpRequest();
+        xhr.onload = ()=>{
+          if(xhr.status == 200){
+              let res = JSON.parse(xhr.responseText);
+              // console.log(res)
+              if(res[0]._id){
+                username.value=res[0].username;
+                phone.value=res[0].phone;
+                born.value=res[0].born;
+                email.value=res[0].email;
+                sex.value=res[0].sex;
+                sex.value=res[0].sex;
+              }
+          }
+        }
+        xhr.open('post','/adduser/get',true);
+        xhr.send('user='+myuser);
+    }
 
     addbtn.onclick = (e)=>{
         let _username = username.value;
@@ -151,8 +171,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
             xhr.onload = ()=>{
                 if(xhr.status == 200){
                     let res = JSON.parse(xhr.responseText);
-                    if(res._id){
-                        location.href = '../html/adduser.html';
+                    if(res.ok){
+                        location.href = './user_list.html';
                     }
                 }
             }
@@ -163,10 +183,26 @@ document.addEventListener("DOMContentLoaded", ()=>{
             let data = `username=${_username}&password=${_password}&phone=${_phone}&born=${_born}&email=${_email}&sex=${_sex}&permissions=${_permissions}&ps=${_ps}`;
             xhr.send(data);
 
-        }
+        }else if(myuser && ok2 && ok3){
+            let xhr = new XMLHttpRequest();
+            xhr.onload = ()=>{
+                if(xhr.status == 200){
+                    let res = JSON.parse(xhr.responseText);
+                    if(res.ok){
+                        // location.href = './user_list.html';
+                        console.log(res)
+                    }
+                }
+            }
+            xhr.open('post','/adduser/update',true);
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            
 
-        // let data = `username=${_username}&password=${_password}&phone=${_phone}&born=${_born}&email=${_email}&sex=${_sex}&ps=${_ps}`;
-        // console.log(data);
+            let data = `myuser=${myuser}&username=${_username}&password=${_password}&phone=${_phone}&born=${_born}&email=${_email}&sex=${_sex}&permissions=${_permissions}&ps=${_ps}`;
+            xhr.send(data);
+            
+            console.log(123)
+        }
         e.preventDefault();
     } 
 

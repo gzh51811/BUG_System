@@ -2,7 +2,7 @@
 * @Author: Marte
 * @Date:   2019-02-28 17:19:25
 * @Last Modified by:   Marte
-* @Last Modified time: 2019-03-05 21:00:01
+* @Last Modified time: 2019-03-07 19:34:22
 */
 
 window.onload=function(){
@@ -82,7 +82,7 @@ window.onload=function(){
         var id = ev.target.parentNode.parentNode.parentNode.firstChild.nextSibling.firstChild.innerHTML;
         location.href='add_shopping.html?id='+id;
       }
-      if(ev.target.tagName == 'A'){
+      if(ev.target.tagName == 'EM'){
         var id = ev.target.parentNode.parentNode.parentNode.firstChild.nextSibling.firstChild.innerHTML;
         var ok = confirm('真的删除行么');
         if(ok){

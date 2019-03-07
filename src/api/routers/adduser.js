@@ -20,7 +20,7 @@ router.post('/',async (ctx,next)=>{
     
     // 存入数据库
 
-})
+});
 
 // 判断用户名是否存在
 router.get('/',async (ctx,next)=>{
@@ -33,6 +33,25 @@ router.get('/',async (ctx,next)=>{
     }else{
         ctx.body = 'yes'
     }
-})
+});
+
+router.post('/get',async (ctx,next)=>{
+    let username = ctx.request.body.split('=')[1];
+
+    let res = await db.find('user',{username});
+    // console.log(res)
+
+    ctx.body = res;
+});
+
+router.post('/update',async (ctx,next)=>{
+    let {myuser,username,password, phone, born, email, sex, permissions, ps} = ctx.request.body;
+    
+    // console.log({myuser,username,password, phone, born, email, sex, permissions, ps});
+
+    let res =await db.update('user',{username:myuser},{$set:{username,password, phone, born, email, sex, permissions, ps}});
+
+    ctx.body = res;
+});
 
 module.exports = router;

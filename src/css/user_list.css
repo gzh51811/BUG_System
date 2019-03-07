@@ -2,7 +2,7 @@
 * @Author: Marte
 * @Date:   2019-02-27 20:36:55
 * @Last Modified by:   Marte
-* @Last Modified time: 2019-02-28 14:03:17
+* @Last Modified time: 2019-03-07 17:55:34
 */
 body{width: 1300px;}
 .rig{
@@ -12,6 +12,9 @@ body{width: 1300px;}
 .right{
     float: left;
     width: 1100px;
+}
+.right .welcome li a{
+    display: inline;
 }
 .layui-breadcrumb{
     display: block;

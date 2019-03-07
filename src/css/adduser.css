@@ -15,3 +15,6 @@
 .login{
     z-index: 999;
 }
+.right .welcome li a{
+    display: inline;
+}

@@ -65,35 +65,51 @@ document.addEventListener("DOMContentLoaded", () => {
         alert('请求数据失败')
     });
 
+    let myuser = localStorage.getItem('user');//获取user的值
+
+    if(!myuser){
+        myuser = {}
+    }else{
+        myuser = JSON.parse(myuser);
+    }
+
+    // console.log(myuser.permissions);
+
 
     var right = document.getElementsByClassName('right')[0];
     right.onclick = function(ev) {
         var ev = ev || window.event;
-        if (ev.target.tagName == 'SPAN') {
-            var user = ev.target.parentNode.parentNode.parentNode.firstChild.nextSibling.nextSibling.firstChild.innerHTML;
-            console.log(user)
-            location.href = 'adduser.html?user=' + user;
-        }
-        if (ev.target.tagName == 'A') {
-            var user = ev.target.parentNode.parentNode.parentNode.firstChild.nextSibling.nextSibling.firstChild.innerHTML;
-            console.log(user)
-            var ok = confirm('真的删除行么');
-            if (ok) {
-                let xhr = new XMLHttpRequest();
-                xhr.onload = () => {
-                    if (xhr.status == 200) {
-                        let res = JSON.parse(xhr.responseText);
-                        if (res.ok) {
-                            location.reload();
+        if(myuser.permissions == 'vip'){
+            if (ev.target.tagName == 'SPAN') {
+                var user = ev.target.parentNode.parentNode.parentNode.firstChild.nextSibling.nextSibling.firstChild.innerHTML;
+                console.log(user)
+                location.href = 'adduser.html?user=' + user;
+            }
+            if (ev.target.tagName == 'EM') {
+                var user = ev.target.parentNode.parentNode.parentNode.firstChild.nextSibling.nextSibling.firstChild.innerHTML;
+                console.log(user)
+                var ok = confirm('真的删除行么');
+                if (ok) {
+                    let xhr = new XMLHttpRequest();
+                    xhr.onload = () => {
+                        if (xhr.status == 200) {
+                            let res = JSON.parse(xhr.responseText);
+                            if (res.ok) {
+                                location.reload();
+                            }
                         }
                     }
+                    xhr.open('post', '/user_list', true);
+                    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                    xhr.send(`username=${user}`);
                 }
-                xhr.open('post', '/user_list', true);
-                xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-                xhr.send(`username=${user}`);
             }
+            ev.preventDefault();
+        }else if(ev.target.tagName == 'A'){
+            //点击a标签保证跳转
+        }else{
+            alert('你不是管理员');
         }
-        ev.preventDefault();
     }
 
 });

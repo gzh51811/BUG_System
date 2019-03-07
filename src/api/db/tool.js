@@ -56,7 +56,7 @@ exports.update = async (colName,query,newData)=>{
     let {db,client} = await connect();
 
     let collection = db.collection(colName);
-    let res = await collection['updatetMany'](query,newData);
+    let res = await collection['updateMany'](query,newData);
 
     client.close();
 
